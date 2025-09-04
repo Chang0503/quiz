@@ -26,35 +26,35 @@ import jakarta.validation.Valid;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/park")  // 👈 加上這行！
+@RequestMapping("quiz")
 public class ParkController {
 
 	@Autowired
 	private ParkService parkService;
 	
-	@PostMapping(value = "/create")
+	@PostMapping(value = "/park/create")
 	public BasicRes create(@Valid @RequestBody createParkReq req) throws Exception {
 		return parkService.create(req);
 	}
 	
 	// 更新車位
-    @PutMapping("/update")
+    @PutMapping("/park/update")
     public BasicRes update(@Valid @RequestBody updateParkReq req) {
         return parkService.update(req);
     }
     
  // 或用 RequestParam
-    @DeleteMapping("/delete")
+    @DeleteMapping("/park/delete")
     public BasicRes delete(@RequestParam("phone") String phone) {
         return parkService.delete(phone);
     }
     
-    @GetMapping("/getInfo")
+    @GetMapping("/park/getInfo")
     public GetInfoRes getInfo(@RequestParam("phone") String phone) {
         return parkService.getInfo(phone);
     }
 
-    @GetMapping("/getAllInfo")
+    @GetMapping("/park/getAllInfo")
     public GetAllInfoRes getAllInfo(@RequestParam("date") String dateStr) {
         LocalDate date = LocalDate.parse(dateStr.trim()); // trim() 去掉前後空白或換行
         return parkService.getAllInfo(date);

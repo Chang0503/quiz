@@ -12,7 +12,7 @@ public interface ParkService {
 
 	public BasicRes create(createParkReq req); //訂車位
 	
-	public GetInfoRes getInfo(String phone,String carNumber); //查詢訂車資訊(單人)
+	public GetInfoRes getInfo(String phone); //查詢訂車資訊(單人)
 	
 	public GetAllInfoRes getAllInfo(LocalDate date); //查詢訂車資訊(全部)
 	

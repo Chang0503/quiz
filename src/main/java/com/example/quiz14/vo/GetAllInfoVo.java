@@ -7,7 +7,7 @@ public class GetAllInfoVo {
 
 	private String Name;
 	
-	private int id;
+	private String phone;
 	
 	private LocalDate date;
 
@@ -19,12 +19,14 @@ public class GetAllInfoVo {
 		Name = name;
 	}
 
-	public int getId() {
-		return id;
+	
+
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public LocalDate getDate() {

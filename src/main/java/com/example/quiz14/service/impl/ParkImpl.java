@@ -3,7 +3,7 @@ package com.example.quiz14.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,17 +39,17 @@ public class ParkImpl implements ParkService{
 	                return new BasicRes(400, "該電話已經訂過車位");
 	            }
 	            
-	            // 2. 電話格式驗證 (4碼-3碼-3碼)
-	            String phoneRegex = "\\d{4}-\\d{3}-\\d{3}";
-	            if (!Pattern.matches(phoneRegex, req.getPhone())) {
-	                return new BasicRes(400, "電話格式錯誤，正確格式為 xxxx-xxx-xxx");
-	            }
-
-	            // 3. 車牌格式驗證 (三個英文-三個數字)
-	            String carNumberRegex = "^[A-Z]{3}-\\d{4}$";
-	            if (!Pattern.matches(carNumberRegex, req.getCarNumber().toUpperCase())) {
-	                return new BasicRes(400, "車牌格式錯誤，正確格式為 ABC-1234");
-	            }
+//	            // 2. 電話格式驗證 (4碼-3碼-3碼)
+//	            String phoneRegex = "\\d{4}-\\d{3}-\\d{3}";
+//	            if (!Pattern.matches(phoneRegex, req.getPhone())) {
+//	                return new BasicRes(400, "電話格式錯誤，正確格式為 xxxx-xxx-xxx");
+//	            }
+//
+//	            // 3. 車牌格式驗證 (三個英文-三個數字)
+//	            String carNumberRegex = "^[A-Z]{3}-\\d{4}$";
+//	            if (!Pattern.matches(carNumberRegex, req.getCarNumber().toUpperCase())) {
+//	                return new BasicRes(400, "車牌格式錯誤，正確格式為 ABC-1234");
+//	            }
 
 	            // 3. 建立新 Park 實體
 	            Park park = new Park();
@@ -76,10 +76,10 @@ public class ParkImpl implements ParkService{
 	            return new GetInfoRes(400, "電話不能為空");
 	        }
 
-	        // 移除非數字，保證和資料庫一致
-	        String normalizedPhone = phone.replaceAll("\\D", "");
+//	        // 移除非數字，保證和資料庫一致
+//	        String normalizedPhone = phone.replaceAll("\\D", "");
 
-	        Park park = parkDao.findById(normalizedPhone).orElse(null);
+	        Park park = parkDao.findByPhone(phone).orElse(null);
 
 	        if (park == null) {
 	            return new GetInfoRes(404, "查無資料");
@@ -100,26 +100,31 @@ public class ParkImpl implements ParkService{
 	}
 
 
-	@Override //後台取資料
+	@Override
 	public GetAllInfoRes getAllInfo(LocalDate date) {
-		try {
-	        // 你的邏輯
+	    try {
 	        List<Park> parkList = parkDao.findByDate(date);
 
 	        List<GetAllInfoVo> voList = parkList.stream().map(park -> {
 	            GetAllInfoVo vo = new GetAllInfoVo();
-	            vo.setId(park.getPhone().hashCode());
+	            vo.setPhone(park.getPhone()); // 或其他唯一值
 	            vo.setName(park.getName());
 	            vo.setDate(park.getDate());
 	            return vo;
 	        }).toList();
-
-	        return new GetAllInfoRes(voList);
+	        System.out.println("查到資料數量: " + voList.size());
+	        voList.forEach(vo -> System.out.println(vo.getPhone() + " " + vo.getName() + " " + vo.getDate()));
+	        GetAllInfoRes res = new GetAllInfoRes();
+	        res.setCode(200);          // 一定要有 code 200
+	        res.setMessage("查詢成功"); // 一定要有 message
+	        res.setGetAllInfoVoList(voList);      // <- 這裡改成你類別已有的 setter
+	        return res;
 
 	    } catch (Exception e) {
 	        return new GetAllInfoRes(400, "查詢失敗: " + e.getMessage());
 	    }
 	}
+
 
 	@Override
 	public BasicRes update(updateParkReq req) {

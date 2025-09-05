@@ -3,11 +3,11 @@ package com.example.quiz14.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,8 +56,12 @@ public class ParkController {
 
     @GetMapping("/park/getAllInfo")
     public GetAllInfoRes getAllInfo(@RequestParam("date") String dateStr) {
+    	System.out.println("收到前端日期: [" + dateStr + "]");
         LocalDate date = LocalDate.parse(dateStr.trim()); // trim() 去掉前後空白或換行
-        return parkService.getAllInfo(date);
+        System.out.println("轉成 LocalDate: " + date);
+        GetAllInfoRes res = parkService.getAllInfo(date);
+        System.out.println("查詢結果: " + res);
+        return res;
     }
 
 }

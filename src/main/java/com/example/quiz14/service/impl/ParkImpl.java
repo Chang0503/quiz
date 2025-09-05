@@ -71,6 +71,7 @@ public class ParkImpl implements ParkService{
 
 	@Override
 	public GetInfoRes getInfo(String phone) {
+		System.out.println("received phone: " + phone);
 	    try {
 	        if (phone == null || phone.isEmpty()) {
 	            return new GetInfoRes(400, "電話不能為空");
@@ -80,12 +81,14 @@ public class ParkImpl implements ParkService{
 //	        String normalizedPhone = phone.replaceAll("\\D", "");
 
 	        Park park = parkDao.findByPhone(phone).orElse(null);
-
+	        System.out.println("found: " + park);
 	        if (park == null) {
 	            return new GetInfoRes(404, "查無資料");
 	        }
 
 	        return new GetInfoRes(
+	        		 200, // ✅ 設定 code = 200
+	        		    "查詢成功", // 可加訊息
 	            park.getCarNumber(),
 	            park.getPhone(),
 	            park.getDate(),

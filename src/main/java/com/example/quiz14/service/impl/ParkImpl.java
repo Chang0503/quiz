@@ -3,7 +3,7 @@ package com.example.quiz14.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class ParkImpl implements ParkService{
 	
 	@Override
 	public BasicRes create(createParkReq req) {
-		  try {
+		  try {			  
 	            // 1. 檢查必要欄位（這裡也可靠 @Valid 自動驗證）
 	            if (req.getPhone() == null || req.getPhone().isEmpty()) {
 	                return new BasicRes(400, "電話不能空");
@@ -39,17 +39,17 @@ public class ParkImpl implements ParkService{
 	                return new BasicRes(400, "該電話已經訂過車位");
 	            }
 	            
-//	            // 2. 電話格式驗證 (4碼-3碼-3碼)
-//	            String phoneRegex = "\\d{4}-\\d{3}-\\d{3}";
-//	            if (!Pattern.matches(phoneRegex, req.getPhone())) {
-//	                return new BasicRes(400, "電話格式錯誤，正確格式為 xxxx-xxx-xxx");
-//	            }
-//
-//	            // 3. 車牌格式驗證 (三個英文-三個數字)
-//	            String carNumberRegex = "^[A-Z]{3}-\\d{4}$";
-//	            if (!Pattern.matches(carNumberRegex, req.getCarNumber().toUpperCase())) {
-//	                return new BasicRes(400, "車牌格式錯誤，正確格式為 ABC-1234");
-//	            }
+	            String phoneRegex = "^09\\d{8}$";
+		        Pattern pattern = Pattern.compile(phoneRegex);
+		        if (!pattern.matcher(req.getPhone()).matches()) {
+		            return new BasicRes(400, "電話格式錯誤，必須是09開頭的10位數字");
+		        }
+
+		        // 3. 車牌格式驗證 (前面2~3個英文，後面3~4個數字)
+		        String carNumberRegex = "^[A-Z]{2,3}-\\d{3,4}$";
+		        if (!Pattern.matches(carNumberRegex, req.getCarNumber().toUpperCase())) {
+		            return new BasicRes(400, "車牌格式錯誤，正確格式例如 AB-123、ABC-1234");
+		        }
 
 	            // 3. 建立新 Park 實體
 	            Park park = new Park();
@@ -76,10 +76,11 @@ public class ParkImpl implements ParkService{
 	        if (phone == null || phone.isEmpty()) {
 	            return new GetInfoRes(400, "電話不能為空");
 	        }
-
+//
 //	        // 移除非數字，保證和資料庫一致
 //	        String normalizedPhone = phone.replaceAll("\\D", "");
-
+	        
+	        
 	        Park park = parkDao.findByPhone(phone).orElse(null);
 	        System.out.println("found: " + park);
 	        if (park == null) {
@@ -110,7 +111,7 @@ public class ParkImpl implements ParkService{
 
 	        List<GetAllInfoVo> voList = parkList.stream().map(park -> {
 	            GetAllInfoVo vo = new GetAllInfoVo();
-	            vo.setPhone(park.getPhone()); // 或其他唯一值
+	            vo.setPhone(park.getPhone());
 	            vo.setName(park.getName());
 	            vo.setDate(park.getDate());
 	            return vo;
@@ -137,6 +138,17 @@ public class ParkImpl implements ParkService{
 		        Optional<Park> optionalPark = parkDao.findById(req.getPhone());
 		        if (optionalPark.isEmpty()) {
 		            return new BasicRes(404, "找不到該車位資料");
+		        }
+		        
+		        String phoneRegex = "^09\\d{8}$";
+		        Pattern pattern = Pattern.compile(phoneRegex);
+		        if (!pattern.matcher(req.getPhone()).matches()) {
+		            return new BasicRes(400, "電話格式錯誤，必須是09開頭的10位數字");
+		        }
+		        
+		        String carNumberRegex = "^[A-Z]{2,3}-\\d{3,4}$";
+		        if (!Pattern.matches(carNumberRegex, req.getCarNumber().toUpperCase())) {
+		            return new BasicRes(400, "車牌格式錯誤，正確格式例如 AB-123、ABC-1234");
 		        }
 
 		        // 3. 更新資料

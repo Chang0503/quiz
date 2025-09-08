@@ -71,6 +71,7 @@ public class QuizServiceImpl implements QuizService {
 			}
 		} catch (Exception e) {
 			// 將 exception 拋出
+			e.printStackTrace();  // 印出完整錯誤
 			throw e;
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
@@ -115,12 +116,17 @@ public class QuizServiceImpl implements QuizService {
 
 	@Override
 	public GetQuestionRes getQuestionByQuizId(int quizId) throws JsonProcessingException {
+		Quiz quiz = quizDao.selectById(quizId);
 		List<Question> questionList = questionDao.getByQuizId(quizId);
 		List<QuestionVo> voList = new ArrayList<>();
 		// 把每個 Question 中的值設定到 QuestionVo 裡
 		for (Question item : questionList) {
 			QuestionVo vo = new QuestionVo();
 			vo.setQuizId(item.getQuizId());
+			vo.setTitle(quiz.getTitle());
+			vo.setDirection(quiz.getDirection());
+			vo.setStartDate(quiz.getStartDate());
+			vo.setEndDate(quiz.getEndDate());
 			vo.setQuestionId(item.getQuestionId());
 			vo.setQuestion(item.getQuestion());
 			vo.setType(item.getType());
@@ -168,20 +174,20 @@ public class QuizServiceImpl implements QuizService {
 			return new BasicRes(ResMessage.QUIZ_NOT_FOUND.getCode(), //
 					ResMessage.QUIZ_NOT_FOUND.getMessage());
 		}
-		if (quiz.isPublished()) {// 問卷已發布
-			LocalDate nowDate = LocalDate.now();
-			LocalDate startDate = quiz.getStartDate();
-			// 只要判斷當前日期是否大於等於開始日期
-			// 進行中: 當前日期 >= 開始日期
-			// 已結束: 當前日期 > 結束日期 --> 也表示 當前日期 > 開始日期
-			// nowDate.isEqual(startDate) || nowDate.isAfter(startDate) -->
-			// !nowDate.isBefore(startDate) : 當前日期 >= 開始時間
-			// 當前日期大於開始日期 --> 當前日期不在開始日期之前
-			if (!nowDate.isBefore(startDate)) {
-				return new BasicRes(ResMessage.CAN_NOT_UPDATE.getCode(), //
-						ResMessage.CAN_NOT_UPDATE.getMessage());
-			}
-		}
+//		if (quiz.isPublished()) {// 問卷已發布
+//			LocalDate nowDate = LocalDate.now();
+//			LocalDate startDate = quiz.getStartDate();
+//			// 只要判斷當前日期是否大於等於開始日期
+//			// 進行中: 當前日期 >= 開始日期
+//			// 已結束: 當前日期 > 結束日期 --> 也表示 當前日期 > 開始日期
+//			// nowDate.isEqual(startDate) || nowDate.isAfter(startDate) -->
+//			// !nowDate.isBefore(startDate) : 當前日期 >= 開始時間
+//			// 當前日期大於開始日期 --> 當前日期不在開始日期之前
+//			if (!nowDate.isBefore(startDate)) {
+//				return new BasicRes(ResMessage.CAN_NOT_UPDATE.getCode(), //
+//						ResMessage.CAN_NOT_UPDATE.getMessage());
+//			}
+//		}
 		try {
 			// 更新問卷
 			int res = quizDao.update(req.getQuizId(), req.getTitle(), req.getDirection(), //
@@ -197,7 +203,7 @@ public class QuizServiceImpl implements QuizService {
 			for (QuestionVo vo : questionVoList) {
 				// 將 vo 中 options 的資料型態從 List<String> 轉成 String (沒辦法用 toString 會是記憶體位置)
 				String optionsStr = mapper.writeValueAsString(vo.getOptions());
-				questionDao.insert(vo.getQuestionId(), vo.getQuestionId(), vo.getQuestion(), //
+				questionDao.insert(req.getQuizId(), vo.getQuestionId(), vo.getQuestion(), //
 						vo.getType(), vo.isRequired(), optionsStr);
 			}
 		} catch (Exception e) {

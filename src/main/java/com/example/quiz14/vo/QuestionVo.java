@@ -1,5 +1,6 @@
 package com.example.quiz14.vo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.quiz14.constants.ConstantsMessage;
@@ -9,6 +10,14 @@ import jakarta.validation.constraints.NotBlank;
 
 public class QuestionVo {
 	private int quizId;
+	
+	private String title;
+	
+	private String direction;
+	
+	private LocalDate startDate;
+	
+	private LocalDate endDate;
 	
 	@Min(value = 1, message = ConstantsMessage.PARAM_QUES_ID_ERROR)
 	private int questionId;
@@ -70,4 +79,38 @@ public class QuestionVo {
 	public void setOptions(List<String> options) {
 		this.options = options;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+	
+	
 }

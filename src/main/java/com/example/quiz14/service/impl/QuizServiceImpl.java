@@ -1,7 +1,9 @@
 package com.example.quiz14.service.impl;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,8 +112,20 @@ public class QuizServiceImpl implements QuizService {
 
 	@Override
 	public SearchRes getAll() {
+		List<Quiz> quiz = quizDao.selectAll();
+		LocalDate today = LocalDate.now();
+
+	    for (Quiz quiz1 : quiz) {
+	        LocalDate startDate = quiz1.getStartDate();  // 已經是 LocalDate
+	        if (startDate.isBefore(today) || startDate.isEqual(today)) { // startDate >= today
+	            quiz1.setPublished(true);
+	        } else {
+	            quiz1.setPublished(false);
+	        }
+	    }
 		return new SearchRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), quizDao.selectAll());
+		
 	}
 
 	@Override
@@ -119,6 +133,9 @@ public class QuizServiceImpl implements QuizService {
 		Quiz quiz = quizDao.selectById(quizId);
 		List<Question> questionList = questionDao.getByQuizId(quizId);
 		List<QuestionVo> voList = new ArrayList<>();
+		
+		
+		
 		// 把每個 Question 中的值設定到 QuestionVo 裡
 		for (Question item : questionList) {
 			QuestionVo vo = new QuestionVo();
@@ -217,16 +234,16 @@ public class QuizServiceImpl implements QuizService {
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public BasicRes delete(DeleteReq req) {
-		// 檢查問卷是否能刪除: 問卷狀態進行中或已結束 都不能刪除
-		List<Quiz> quizList = quizDao.selectByIdIn(req.getIdList());
-		for (Quiz item : quizList) {
-			LocalDate nowDate = LocalDate.now();
-			LocalDate startDate = item.getStartDate();
-			if (!nowDate.isBefore(startDate)) {
-				return new BasicRes(ResMessage.CAN_NOt_DELETE.getCode(), //
-						ResMessage.CAN_NOt_DELETE.getMessage());
-			}
-		}
+//		// 檢查問卷是否能刪除: 問卷狀態進行中或已結束 都不能刪除
+//		List<Quiz> quizList = quizDao.selectByIdIn(req.getIdList());
+//		for (Quiz item : quizList) {
+//			LocalDate nowDate = LocalDate.now();
+//			LocalDate startDate = item.getStartDate();
+//			if (!nowDate.isBefore(startDate)) {
+//				return new BasicRes(ResMessage.CAN_NOt_DELETE.getCode(), //
+//						ResMessage.CAN_NOt_DELETE.getMessage());
+//			}
+//		}
 		// 刪除問卷和問題
 		quizDao.deleteByIdIn(req.getIdList());
 		questionDao.deleteByQuizIdIn(req.getIdList());

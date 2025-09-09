@@ -198,3 +198,150 @@
 10:33:03.240 INFO  [http-nio-8080-exec-1]o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 10:33:03.241 INFO  [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 10:33:03.247 INFO  [http-nio-8080-exec-1]org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+11:54:12.364 INFO  [background-preinit]org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+11:54:12.423 INFO  [main]com.example.quiz14.Quiz14Application - Starting Quiz14Application using Java 21.0.8 with PID 23804 (C:\Users\chang\Desktop\動態問卷後端\bin\main started by chang in C:\Users\chang\Desktop\動態問卷後端)
+11:54:12.425 INFO  [main]com.example.quiz14.Quiz14Application - No active profile set, falling back to 1 default profile: "default"
+11:54:13.598 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:54:13.681 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 73 ms. Found 6 JPA repository interfaces.
+11:54:14.395 INFO  [main]o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:54:14.409 INFO  [main]org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+11:54:14.411 INFO  [main]org.apache.catalina.core.StandardService - Starting service [Tomcat]
+11:54:14.411 INFO  [main]org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+11:54:14.482 INFO  [main]o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:54:14.483 INFO  [main]o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2010 ms
+11:54:14.715 INFO  [main]org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:54:14.838 INFO  [main]org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+11:54:14.887 INFO  [main]o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:54:15.206 INFO  [main]o.s.o.j.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:54:15.249 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:54:15.432 INFO  [main]com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d07aacc
+11:54:15.434 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:54:15.543 INFO  [main]org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+11:54:15.879 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.QuestionId
+11:54:15.879 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.QuestionId
+11:54:15.880 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.FeedbackId
+11:54:15.880 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.FeedbackId
+11:54:16.482 INFO  [main]o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:54:16.623 INFO  [main]o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:54:16.632 WARN  [main]o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController' defined in file [C:\Users\chang\Desktop\動態問卷後端\bin\main\com\example\quiz14\controller\AdminController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.example.quiz14.service.ifs.AdminService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+11:54:16.633 INFO  [main]o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11:54:16.637 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+11:54:16.647 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+11:54:16.651 INFO  [main]org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+11:54:16.664 INFO  [main]o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+11:54:16.702 ERROR [main]o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.quiz14.controller.AdminController required a bean of type 'com.example.quiz14.service.ifs.AdminService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.example.quiz14.service.ifs.AdminService' in your configuration.
+
+11:54:26.219 INFO  [background-preinit]org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+11:54:26.282 INFO  [main]com.example.quiz14.Quiz14Application - Starting Quiz14Application using Java 21.0.8 with PID 28432 (C:\Users\chang\Desktop\動態問卷後端\bin\main started by chang in C:\Users\chang\Desktop\動態問卷後端)
+11:54:26.283 INFO  [main]com.example.quiz14.Quiz14Application - No active profile set, falling back to 1 default profile: "default"
+11:54:27.291 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:54:27.381 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 74 ms. Found 6 JPA repository interfaces.
+11:54:27.909 INFO  [main]o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:54:27.920 INFO  [main]org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+11:54:27.921 INFO  [main]org.apache.catalina.core.StandardService - Starting service [Tomcat]
+11:54:27.921 INFO  [main]org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+11:54:27.987 INFO  [main]o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:54:27.987 INFO  [main]o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1643 ms
+11:54:28.205 INFO  [main]org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:54:28.268 INFO  [main]org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+11:54:28.310 INFO  [main]o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:54:28.596 INFO  [main]o.s.o.j.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:54:28.625 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:54:28.776 INFO  [main]com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c2096c6
+11:54:28.777 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:54:28.849 INFO  [main]org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+11:54:29.106 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.QuestionId
+11:54:29.106 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.QuestionId
+11:54:29.106 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.FeedbackId
+11:54:29.106 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.FeedbackId
+11:54:29.561 INFO  [main]o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:54:29.606 INFO  [main]o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:54:29.616 WARN  [main]o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController' defined in file [C:\Users\chang\Desktop\動態問卷後端\bin\main\com\example\quiz14\controller\AdminController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.example.quiz14.service.ifs.AdminService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+11:54:29.616 INFO  [main]o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11:54:29.619 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+11:54:29.629 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+11:54:29.632 INFO  [main]org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+11:54:29.643 INFO  [main]o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+11:54:29.665 ERROR [main]o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.quiz14.controller.AdminController required a bean of type 'com.example.quiz14.service.ifs.AdminService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.example.quiz14.service.ifs.AdminService' in your configuration.
+
+11:55:25.195 INFO  [background-preinit]org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+11:55:25.257 INFO  [main]com.example.quiz14.Quiz14Application - Starting Quiz14Application using Java 21.0.8 with PID 17588 (C:\Users\chang\Desktop\動態問卷後端\bin\main started by chang in C:\Users\chang\Desktop\動態問卷後端)
+11:55:25.258 INFO  [main]com.example.quiz14.Quiz14Application - No active profile set, falling back to 1 default profile: "default"
+11:55:26.393 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:55:26.486 INFO  [main]o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 6 JPA repository interfaces.
+11:55:27.089 INFO  [main]o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:55:27.100 INFO  [main]org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+11:55:27.102 INFO  [main]org.apache.catalina.core.StandardService - Starting service [Tomcat]
+11:55:27.102 INFO  [main]org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+11:55:27.160 INFO  [main]o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:55:27.161 INFO  [main]o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1840 ms
+11:55:27.387 INFO  [main]org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:55:27.441 INFO  [main]org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+11:55:27.478 INFO  [main]o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:55:27.790 INFO  [main]o.s.o.j.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:55:27.818 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:55:27.990 INFO  [main]com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@194224ca
+11:55:27.991 INFO  [main]com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:55:28.066 INFO  [main]org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+11:55:28.353 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.QuestionId
+11:55:28.353 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.QuestionId
+11:55:28.353 WARN  [main]org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.example.quiz14.entity.FeedbackId
+11:55:28.353 WARN  [main]org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.example.quiz14.entity.FeedbackId
+11:55:28.915 INFO  [main]o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:55:28.968 INFO  [main]o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:55:29.437 INFO  [main]o.s.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+11:55:30.444 WARN  [main]o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:55:31.041 INFO  [main]org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+11:55:31.066 INFO  [main]o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+11:55:31.075 INFO  [main]com.example.quiz14.Quiz14Application - Started Quiz14Application in 6.319 seconds (process running for 6.675)

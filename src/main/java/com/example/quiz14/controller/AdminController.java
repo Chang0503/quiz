@@ -11,7 +11,9 @@ import com.example.quiz14.service.ifs.AdminService;
 import com.example.quiz14.vo.BasicRes;
 import com.example.quiz14.vo.logginReq;
 
-@CrossOrigin
+import jakarta.servlet.http.HttpServletRequest;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/quiz")  // 👈 加上這行！
 public class AdminController {
@@ -24,7 +26,9 @@ public class AdminController {
 
 	    // 登入
 	    @PostMapping("/login")
-	    public BasicRes login(@RequestBody logginReq req) {
+	    public BasicRes login(@RequestBody logginReq req, HttpServletRequest request) {
+	        String ip = request.getRemoteAddr();  // 取得使用者 IP
+	        req.setIp(ip);
 	        return adminService.loggin(req);
 	    }
 

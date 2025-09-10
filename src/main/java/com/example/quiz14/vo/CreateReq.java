@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.example.quiz14.constants.ConstantsMessage;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -19,9 +20,11 @@ public class CreateReq {
 
 	@FutureOrPresent(message = ConstantsMessage.PARAM_START_DATE_ERROR) // 日期只能是未來或當天
 	@NotNull(message = ConstantsMessage.PARAM_START_DATE_ERROR)
+	@JsonFormat(pattern = "yyyy-MM-dd") // 加這行
 	private LocalDate startDate;
 
 	@NotNull(message = ConstantsMessage.PARAM_END_DATE_ERROR)
+	@JsonFormat(pattern = "yyyy-MM-dd") // 加這行
 	private LocalDate endDate;
 
 	public LocalDate getStartDate() {

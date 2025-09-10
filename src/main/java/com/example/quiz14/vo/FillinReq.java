@@ -17,7 +17,7 @@ public class FillinReq {
 	@NotBlank(message = ConstantsMessage.Phone_IS_NECESSARY)
 	private String phone;
 
-	@NotBlank(message = ConstantsMessage.EMAIL_IS_NECESSARY)
+
 	private String email;
 
 	@Min(value = 18, message = ConstantsMessage.USER_AGE_ERROR)//設定至少18歲才能填

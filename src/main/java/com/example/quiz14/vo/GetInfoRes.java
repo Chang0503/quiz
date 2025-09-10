@@ -72,15 +72,16 @@ public class GetInfoRes extends BasicRes{
 		super(code, message);
 	}
 
-	public GetInfoRes(String carNumber, String phone, LocalDate date, String time, String name, String remark) {
-		super();
-		this.carNumber = carNumber;
-		this.phone = phone;
-		this.date = date;
-		this.time = time;
-		this.name = name;
-		this.remark = remark;
-	}
 	
+	public GetInfoRes(int code, String message, String carNumber, String phone, LocalDate date, String time, String name, String remark) {
+	    super(code, message);
+	    this.carNumber = carNumber;
+	    this.phone = phone;
+	    this.date = date;
+	    this.time = time;
+	    this.name = name;
+	    this.remark = remark;
+	}
+
 	
 }

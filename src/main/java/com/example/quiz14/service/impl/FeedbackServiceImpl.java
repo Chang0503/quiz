@@ -125,9 +125,10 @@ public class FeedbackServiceImpl implements FeedbackService {
 	  // 問題編號和問題的 map
 	  Map<Integer, String> map = new HashMap<>();
 	  // 將每個 Question 中的問題編號和問題設定到 QuestionAnswerVo 中
-	  for(Question item : questionList) {
-	   map.put(item.getQuestionId(), item.getOptions());
-	  }
+	  //改成返回題目 不是返回選項
+	  for (Question item : questionList) {
+		    map.put(item.getQuestionId(), item.getQuestion());  // 題目名稱
+		}
 	  //3. feedback
 	  List<Feedback> feedbackList =  feedbackDao.selectByQuizId(quizId);
 	  // feedbackList 的結果可能會有重複地填寫者資訊,所以要先整理

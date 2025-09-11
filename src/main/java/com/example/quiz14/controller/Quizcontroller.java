@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/quiz")  // 👈 加上這行！
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://quizfront-3bx3.onrender.com") // 允許前端網域
 public class Quizcontroller {
 	// 即預設的路徑會是 localhost:8080/quiz/
 	// @RequestMapping(value = "quiz/") // 表示此 controller 底下的所有 API 路徑的前綴會是以 quiz/開頭

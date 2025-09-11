@@ -13,7 +13,7 @@ import com.example.quiz14.vo.logginReq;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://quizfront-3bx3.onrender.com") // 允許前端網域
 @RestController
 @RequestMapping("/quiz")  // 👈 加上這行！
 public class AdminController {

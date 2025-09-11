@@ -24,7 +24,7 @@ import com.example.quiz14.vo.updateParkReq;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin
+@CrossOrigin(origins = "https://quizfront-3bx3.onrender.com") // 允許前端網域
 @RestController
 @RequestMapping("quiz")
 public class ParkController {

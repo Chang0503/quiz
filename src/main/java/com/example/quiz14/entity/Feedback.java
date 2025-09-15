@@ -11,7 +11,6 @@ public class Feedback {
 	@Column(name = "user_name")
 	private String userName;
 	
-	@Id
 	@Column(name = "phone")
 	private String phone;
 
@@ -35,6 +34,9 @@ public class Feedback {
 	@Column(name = "fillin_date")
 	private LocalDate fillinDate;
 
+	@Column(name = "date")
+	private LocalDate date;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -97,6 +99,14 @@ public class Feedback {
 
 	public void setFillinDate(LocalDate fillinDate) {
 		this.fillinDate = fillinDate;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	

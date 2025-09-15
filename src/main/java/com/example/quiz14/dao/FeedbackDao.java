@@ -18,20 +18,21 @@ import jakarta.transaction.Transactional;
 	@Repository
 	public interface FeedbackDao extends JpaRepository<Feedback, FeedbackId> {
 
-	    @Query(value = "SELECT COUNT(phone) FROM feedback WHERE phone = ?1 AND quiz_id = ?2", //
+	    @Query(value = "SELECT COUNT(phone) FROM feedback WHERE phone = ?1 AND quiz_id = ?2 AND date = ?3", //
 	            nativeQuery = true)
-	    public int selectCountByPhoneAndQuizId(String phone, int quizId);
+	    public int selectCountByPhoneAndQuizId(String phone, int quizId, LocalDate date);
 
 	    @Transactional
 	    @Modifying
 	    @Query(value = "INSERT INTO feedback " //
-	            + " (user_name, phone, email, age, quiz_id, ques_id, answer, fillin_date) "//
+	            + " (user_name, phone, email, date, age, quiz_id, ques_id, answer, fillin_date) "//
 	            + " VALUES "//
-	            + " (:userName, :phone, :email, :age, :quizId, :quesId, :answer, :fillinDate)", //
+	            + " (:userName, :phone, :email, :date, :age, :quizId, :quesId, :answer, :fillinDate)", //
 	            nativeQuery = true)
 	    public void insert(@Param("userName") String userName, //
 	            @Param("phone") String phone, //
 	            @Param("email") String email, //
+	            @Param("date") LocalDate date, //
 	            @Param("age") int age, //
 	            @Param("quizId") int quizId, //
 	            @Param("quesId") int quesId, //
@@ -47,7 +48,7 @@ import jakarta.transaction.Transactional;
 	//FeedbackDto要給定完整的路徑:com.example.quiz14.vo.FeedbackDto
 	@Query(value = "select new com.example.quiz14.vo.FeedbackDto(Qz.title, Qz.direction, " //
 			+ " Qu.questionId, Qu.question, " //
-			+ " F.userName, F.phone, F.email, F.age, F.answer, F.fillinDate) " //
+			+ " F.userName, F.phone, F.email, F.age, F.answer, F.fillinDate, F.date) " //
 			+ " from Quiz as Qz " //
 			+ " join Question as Qu on Qz.id = Qu.quizId" //
 			+ " join Feedback as F on Qu.quizId = F.quizId where Qz.id = ?1", //

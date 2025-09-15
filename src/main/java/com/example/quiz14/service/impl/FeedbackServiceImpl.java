@@ -91,7 +91,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 			}
 		}
 		// 3. 檢查phone是否已填寫該張問卷
-		int phoneCount = feedbackDao.selectCountByPhoneAndQuizId(req.getPhone(), req.getQuizId());
+		int phoneCount = feedbackDao.selectCountByPhoneAndQuizId(req.getPhone(), req.getQuizId(), req.getDate());
 		if (phoneCount > 0) {
 			return new BasicRes(ResMessage.PHONE_DUPLICATED.getCode(), //
 					ResMessage.PHONE_DUPLICATED.getMessage());
@@ -100,7 +100,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 		try {
 			for (QuesIdAnswerVo vo : req.getAnswerVoList()) {
 				String answerStr = mapper.writeValueAsString(vo.getAnswerList());
-				feedbackDao.insert(req.getUserName(), req.getPhone(), req.getEmail(), req.getAge(), //
+				feedbackDao.insert(req.getUserName(), req.getPhone(), req.getEmail(),  req.getDate(), req.getAge(),//
 						req.getQuizId(), vo.getQuesId(), answerStr, now);
 			}
 		} catch (Exception e) {

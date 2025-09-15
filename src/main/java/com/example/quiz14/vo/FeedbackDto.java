@@ -28,6 +28,8 @@ public class FeedbackDto {
 	private String answer;
 
 	private LocalDate fillinDate;
+	
+	private LocalDate date;
 
 	
 	public String getTitle() {
@@ -109,13 +111,23 @@ public class FeedbackDto {
 	public void setFillinDate(LocalDate fillinDate) {
 		this.fillinDate = fillinDate;
 	}
+	
+	
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	public FeedbackDto() {
 		super();
 	}
 
 	public FeedbackDto(String title, String direction, int quesId, String question, String userName, String phone,
-			String email, int age, String answer, LocalDate fillinDate) {
+			String email, int age, String answer, LocalDate fillinDate, LocalDate date) {
 		super();
 		this.title = title;
 		this.direction = direction;
@@ -127,6 +139,7 @@ public class FeedbackDto {
 		this.age = age;
 		this.answer = answer;
 		this.fillinDate = fillinDate;
+		this.date = date;
 	}
 
 }

@@ -5,17 +5,10 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class FeedbackId implements Serializable {
 
-	private String phone;
+
 	private int quizId;
 	private int quesId;
 	
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 	public int getQuizId() {
 		return quizId;

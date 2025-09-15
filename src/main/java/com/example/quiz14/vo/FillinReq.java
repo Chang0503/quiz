@@ -1,5 +1,6 @@
 package com.example.quiz14.vo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.quiz14.constants.ConstantsMessage;
@@ -17,6 +18,7 @@ public class FillinReq {
 	@NotBlank(message = ConstantsMessage.Phone_IS_NECESSARY)
 	private String phone;
 
+	private LocalDate date;
 
 	private String email;
 
@@ -69,6 +71,17 @@ public class FillinReq {
 	public void setQuizId(int quizId) {
 		this.quizId = quizId;
 	}
+
+	
+	
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 
 	public List<QuesIdAnswerVo> getAnswerVoList() {
 		return answerVoList;

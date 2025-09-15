@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "https://quizfront-3bx3.onrender.com") // 允許前端網域
+@CrossOrigin(origins = "http://localhost:4200")  // 允許 Angular 前端
 @RestController
 public class FeedbackController {
 	
